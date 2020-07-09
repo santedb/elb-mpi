@@ -1,0 +1,67 @@
+<!--
+  Dataset files allow an applet to seed configuration or metadata into the SanteDB service upon installation.
+  This file seeds the default Elbonia organization data into the SanteDB CDR
+-->
+<?xml version="1.0"?>
+<dataset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="Facility Types (MEMPI)" xmlns="http://santedb.org/data">
+  <insert updateIfExists="true">
+    <Organization xmlns="http://santedb.org/model">
+      <id>faea38c3-401e-4e71-80af-ef31414cb53e</id>
+      <classConcept>7c08bd55-4d42-49cd-92f8-6388d6c4183f</classConcept>
+      <determinerConcept>f29f08de-78a7-4a5e-aeaf-7b545ba19a09</determinerConcept>
+      <statusConcept>c8064cbd-fa06-4530-b430-1a52f1530c27</statusConcept>
+	    <industryConcept>fdeb2e4e-9e02-4ce3-ab69-cece5ffdee20</industryConcept>
+      <name>
+        <use>1ec9583a-b019-4baa-b856-b99caf368656</use>
+        <component>
+          <value>Dilbert Insurance Providers</value>
+        </component>
+      </name>
+    </Organization>
+    </insert>
+    <insert updateIfExists="true">
+    <Organization xmlns="http://santedb.org/model">
+      <id>fae7b5fb-ea49-4460-9149-f0952efe572a</id>
+      <classConcept>7c08bd55-4d42-49cd-92f8-6388d6c4183f</classConcept>
+      <determinerConcept>f29f08de-78a7-4a5e-aeaf-7b545ba19a09</determinerConcept>
+      <statusConcept>c8064cbd-fa06-4530-b430-1a52f1530c27</statusConcept>
+	    <industryConcept>fdeb2e4e-9e02-4ce3-ab69-cece5ffdee20</industryConcept>
+      <name>
+        <use>1ec9583a-b019-4baa-b856-b99caf368656</use>
+        <component>
+          <value>Elbonia National Health Insurnace Programme</value>
+        </component>
+      </name>
+    </Organization>
+    </insert>
+    <insert updateIfExists="true">
+    <Organization xmlns="http://santedb.org/model">
+      <id>faf81ba3-f87b-4cb9-a6a8-77c925f52c3c</id>
+      <classConcept>7c08bd55-4d42-49cd-92f8-6388d6c4183f</classConcept>
+      <determinerConcept>f29f08de-78a7-4a5e-aeaf-7b545ba19a09</determinerConcept>
+      <statusConcept>c8064cbd-fa06-4530-b430-1a52f1530c27</statusConcept>
+	    <industryConcept>ef0b2e4e-9e02-4ce3-ab69-cece5ffdee20</industryConcept>
+      <name>
+        <use>1ec9583a-b019-4baa-b856-b99caf368656</use>
+        <component>
+          <value>Dilbert University</value>
+        </component>
+      </name>
+    </Organization>
+  </insert>
+   <insert updateIfExists="true">
+    <Organization xmlns="http://santedb.org/model">
+      <id>fa068ab2-440d-47f7-b5ec-2075a7089f63</id>
+      <classConcept>7c08bd55-4d42-49cd-92f8-6388d6c4183f</classConcept>
+      <determinerConcept>f29f08de-78a7-4a5e-aeaf-7b545ba19a09</determinerConcept>
+      <statusConcept>c8064cbd-fa06-4530-b430-1a52f1530c27</statusConcept>
+	    <industryConcept>ef0b2e4e-9e02-4ce3-ab69-cece5f598e20</industryConcept>
+      <name>
+        <use>1ec9583a-b019-4baa-b856-b99caf368656</use>
+        <component>
+          <value>Muddsville Central Hospital Network</value>
+        </component>
+      </name>
+    </Organization>
+  </insert>
+</dataset>

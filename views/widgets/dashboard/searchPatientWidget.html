@@ -1,0 +1,19 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:sdb="http://santedb.org/applet">
+    <sdb:widget name="elb.mpi.widgets.dashboard.search" headerClass="alert-primary"  type="Panel" size="Large" order="0" context="org.santedb.admin.dashboard">
+        <sdb:icon>fas fa-search</sdb:icon>
+        <sdb:description>Elbonia National MPI - Search Patients</sdb:description>
+    </sdb:widget>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <label class="control-label  m-1 mr-2">
+                    {{ 'ui.mpi.patient.search.term' | i18n }}
+                </label>
+            </div>
+            <input type="text" ng-model="widgetSearchQuery" class="form-control" />
+            <div class="input-group-append">
+                <a class="btn btn-outline-primary" ui-sref="santedb-admin.mpi.patients.search({q: widgetSearchQuery})" type="submit"><i class="fas fa-search"></i>
+                    {{ 'ui.action.search' | i18n }}</a>
+            </div>
+        </div>
+    
+</div>

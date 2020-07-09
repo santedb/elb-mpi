@@ -1,0 +1,34 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:sdb="http://santedb.org/applet"
+    oc-lazy-load="{ name: 'ElboniaCommonWidgetController', files: ['/elb.mpi/controllers/widgets/widgetController.js'] }">
+    <sdb:widget name="elb.mpi.widgets.dashboard.connect" headerClass="bg-light" type="Panel" size="Small" order="120"
+        context="org.santedb.admin.dashboard">
+        <sdb:demand>1.3.6.1.4.1.33349.3.1.5.9.2.0.5</sdb:demand>
+        <sdb:icon>fas fa-laptop-medical</sdb:icon>
+        <sdb:description>Elbonia National MPI - Easy Setup</sdb:description>
+    </sdb:widget>
+    <div ng-controller="ElboniaCommonWidgetController" class="card">
+        <div class="card-body shadow container-fluid">
+            <div class="row" ng-if="device">
+                <label class="control-label col-sm-12" style="text-align: left;">{{ 'elb.mpi.widgets.dashboard.device' | i18n }}</label>
+                <div class="col-sm-12 bg-secondary text-light">HL7_{{ $root.system.config.security.deviceName }}</div>
+                <label class="control-label col-sm-12" style="text-align: left;">{{ 'elb.mpi.widgets.dashboard.facility' | i18n }}</label>
+                <div class="col-sm-12 bg-secondary text-light">LOCAL</div>
+                <label class="control-label col-sm-12" style="text-align: left;">{{ 'elb.mpi.widgets.dashboard.secret' | i18n }}</label>
+                <div class="col-sm-12 bg-secondary text-light">{{ device.deviceSecret }}</div>
+                <div ng-if="openMrsConfig.pushed">
+                    <label class="control-label col-sm-12" style="text-align: left;">{{ 'elb.mpi.widgets.dashboard.autoConfig' | i18n }}</label>
+                    <div class="col-sm-12"><ul><li ng-repeat="ipaddr in openMrsConfig.pushed"><a href="{{ipaddr}}" target="_blank">{{ ipaddr }}</a></li></ul></div>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-12 p-2">
+                    <div class="float-right btn-group">
+                        <button class="btn btn-danger" id="btnResetOpenMRS" ng-click="regenerateOpenMRSSecret()"><i
+                                class="fas fa-asterisk"></i> {{ 'ui.action.reset' | i18n }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<!--
+  Subscription definition files allow applets to expose custom subscription logic on th eSanteDB iCDR for use by the dCDR when subscribing
+  These subscriptions will appear in the configuration tooling.
+
+  This subscription synchronizes all persons who are related to patients who have an identitifer in the subscribed identity domains.
+  -->
+  <?xml version="1.0" encoding="utf-8"?>
+<SubscriptionDefinition xmlns="http://santedb.org/subscription"  uuid="99b65812-c14e-4bb4-b7a1-ca7bcee83dde" resource="Person">
+  <server>
+    <definition invariant="npgsql">
+      <![CDATA[
+     SELECT * FROM 
+      ENT_VRSN_TBL 
+      INNER JOIN ENT_TBL USING (ENT_ID)
+        WHERE
+      OBSLT_UTC IS NULL AND -- NOT NULL
+      ENT_TBL.CLS_CD_ID IN ('9de2a846-ddf2-4ebc-902e-84508c5089ea', 'BACD9C6F-3FA9-481E-9636-37457962804D') -- IS PERSON NOT PATIENT
+      AND ENT_ID IN (
+        SELECT TRG_ENT_ID -- RELATED
+        FROM ENT_REL_TBL 
+        WHERE 
+        OBSLT_VRSN_SEQ_ID IS NULL AND -- ACTIVE RELATIONSHIP
+        SRC_ENT_ID IN ( -- SOURCE IS ASSIGNED IDENTIFIER WE'RE INTERESTED IN OR IS ASSIGNED TO OUR FAC
+            SELECT ENT_ID
+            FROM
+              ENT_ID_TBL 
+            WHERE
+              AUT_ID IN ($authority$)
+              AND OBSLT_VRSN_SEQ_ID IS NULL
+        UNION
+          SELECT SRC_ENT_ID
+              FROM
+                ENT_REL_TBL
+              WHERE 
+                REL_TYP_CD_ID = 'ff34dfa7-c6d3-4f8b-bc9f-14bcdc13ba6c'
+                AND TRG_ENT_ID IN ($facility$)
+            )
+      )
+      ]]>
+    </definition>
+    <definition invariant="fbsql">
+      <![CDATA[
+          SELECT * FROM 
+      ENT_VRSN_TBL 
+      INNER JOIN ENT_TBL USING (ENT_ID)
+        WHERE
+      OBSLT_UTC IS NULL AND -- NOT NULL
+      ENT_TBL.CLS_CD_ID IN ('9de2a846-ddf2-4ebc-902e-84508c5089ea', 'BACD9C6F-3FA9-481E-9636-37457962804D') -- IS PERSON NOT PATIENT
+      AND ENT_ID IN (
+        SELECT TRG_ENT_ID -- RELATED
+        FROM ENT_REL_TBL 
+        WHERE 
+        OBSLT_VRSN_SEQ_ID IS NULL AND -- ACTIVE RELATIONSHIP
+        SRC_ENT_ID IN ( -- SOURCE IS ASSIGNED IDENTIFIER WE'RE INTERESTED IN OR IS ASSIGNED TO OUR FAC
+            SELECT ENT_ID
+            FROM
+              ENT_ID_TBL 
+            WHERE
+              AUT_ID IN ($authority$)
+              AND OBSLT_VRSN_SEQ_ID IS NULL
+        UNION
+          SELECT SRC_ENT_ID
+              FROM
+                ENT_REL_TBL
+              WHERE 
+                REL_TYP_CD_ID = char_to_uuid('ff34dfa7-c6d3-4f8b-bc9f-14bcdc13ba6c')
+                AND TRG_ENT_ID IN ($facility$)
+            )
+      )
+      ]]>
+    </definition>
+  </server>
+  <client>
+    <definition resource="Person" name="mpi.subscription.person.rel.aa" mode="subscription" ignoreModifiedOn="false" trigger="always">
+      <guards>
+        <when>subscribed.domainName</when>
+      </guards>
+      <filters>
+        <add>_subscription=99b65812-c14e-4bb4-b7a1-ca7bcee83dff&amp;_authority=$subscribed.id$&amp;_expand=relationship&amp;_expand=participation&amp;_includeRefs=true</add>
+      </filters>
+    </definition>
+  </client>
+</SubscriptionDefinition>

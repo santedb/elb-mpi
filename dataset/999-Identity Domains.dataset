@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!--
+  Dataset files allow applets to seed configuration and/or additional data into the target instance when they are installed into the host SanteDB context.
+  This dataset file sets up the Elbonia assigning authorities
+-->
+<dataset id="Elbonia Identity Domains" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://santedb.org/data">
+  
+  <!--
+    Notes about the identity domains contained here:
+      * OIDS are in community root 1.3.6.1.4.1.52820.5.0.1
+      * Identity Namespaces Are:
+        [MINISTRY]_[PROGRAM]_[INITIATIVE]_[ADDITIONAL CLASSIFIER]
+
+        Where: [MINISTRY]
+          MOH - Ministry of Health
+          MI - Ministry of Immigration
+
+        Where: [PROGRAM]
+          HIV - HIV Prevention and Treatment
+          TB - TB Prevention and Treatment
+          NHID - National Health ID
+  -->
+  <!-- National Health Identifier -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>Elbonia</name>
+      <domainName>MOH_NHID</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.1</oid>
+      <url>http://mpi.moh.gov.elb/identity/moh/nhid</url>
+      <isUnique>true</isUnique>
+      <validation>^\d{12}$</validation>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>
+
+  <!-- OpenMRS Patient Identifiers from HIV programme -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>OpenMRS HIV Patient Identifiers</name>
+      <domainName>MOH_HIV_OMRS</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.2</oid>
+      <url>http://mpi.moh.gov.elb/identity/moh/hiv/openmrs</url>
+      <isUnique>true</isUnique>
+      <validation>^H\d*?-\d{1,5}$</validation>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+
+  <!-- National ART Programme Identifier -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>National ART Programme</name>
+      <domainName>MOH_HIV_NAP</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.3</oid>
+      <url>http://mpi.moh.gov.elb/identity/moh/hiv/nap</url>
+      <isUnique>true</isUnique>
+      <validation>^\d{3}-\d{9}$</validation>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+  
+  <!-- National NRC #  -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>Elbonia National Citizen Registration</name>
+      <domainName>MI_NCID</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.7</oid>
+      <url>http://mpi.moh.gov.elb/identity/mi/ncid</url>
+      <isUnique>true</isUnique>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+
+  <!-- Drivers License - Does not follow pattern -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>Drivers License #</name>
+      <domainName>DLN</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.9</oid>
+      <url>http://mpi.moh.gov.elb/identity/dln</url>
+      <isUnique>false</isUnique>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+
+<!-- Drivers License - Does not follow pattern -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>Social Security #</name>
+      <domainName>SSN</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.19</oid>
+      <url>http://mpi.moh.gov.elb/identity/ssn</url>
+      <isUnique>false</isUnique>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+
+  <!-- MPI Registration Key -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>MPI Internal Registration UUID</name>
+      <domainName>MOH_MPI_REG</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.10</oid>
+      <url>http://mpi.moh.gov.elb/identity/moh/mpi/reg</url>
+      <isUnique>true</isUnique>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+    </AssigningAuthority>
+  </insert>  
+
+ <!-- MPI Registration Application Temporary ID -->
+  <insert skipIfError="false" skipIfExists="true">
+    <AssigningAuthority xmlns="http://santedb.org/model">
+      <name>MPI Offline Registration ID</name>
+      <domainName>MOH_MPI_TMP</domainName>
+      <oid>1.3.6.1.4.1.52820.5.0.1.1.11</oid>
+      <url>http://mpi.moh.gov.elb/identity/moh/mpi/dcg/tmp</url>
+      <isUnique>true</isUnique>
+      <scope>bacd9c6f-3fa9-481e-9636-37457962804d</scope>
+      <validation>^\d{12}$</validation>
+    </AssigningAuthority>
+  </insert>  
+</dataset>

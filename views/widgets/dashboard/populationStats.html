@@ -1,0 +1,17 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:sdb="http://santedb.org/applet" class="container">
+    <sdb:widget name="elb.mpi.widgets.dashboard.patStats" headerClass="alert-primary" type="Panel" size="Medium"
+        order="50" context="org.santedb.admin.dashboard">
+        <sdb:icon>fas fa-users</sdb:icon>
+        <sdb:description>Elbonia National MPI - Patient Population Stats</sdb:description>
+    </sdb:widget>
+
+    <div class="row">
+        <div class="col-6">
+            <report-view id="'org.santedb.bi.core.reports.patient.gender'" view="'chart'" legend="true" />
+        </div>
+        <div class="col-6">
+            <report-view id="'org.santedb.bi.core.reports.patient.age'" view="'chart'" legend="true" />
+        </div>
+    </div>
+
+</div>

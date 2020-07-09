@@ -1,0 +1,34 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:sdb="http://santedb.org/applet"
+    oc-lazy-load="{ name: 'ElboniaCommonWidgetController', files: ['/elb.mpi/controllers/widgets/widgetController.js'] }">
+    <sdb:widget name="elb.mpi.widgets.dashboard.sync" headerClass="bg-light" type="Panel" size="Small" order="100"
+        context="org.santedb.admin.dashboard">
+        <sdb:icon>fas fa-sync</sdb:icon>
+        <sdb:description>Elbonia National MPI - Queue Status</sdb:description>
+        <sdb:guard>$root.system.config.sync.mode == 'Sync'</sdb:guard>
+
+    </sdb:widget>
+    <div ng-controller="ElboniaCommonWidgetController" class="card">
+        <div class="card-body shadow container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="alert"
+                        ng-class="{ 'alert-danger' : queues.dead &gt; 20, 'alert-warning' : queues.dead &gt; 0 &amp;&amp; queues.dead &lt;= 20, 'alert-success' : queues.dead == 0 }">
+                        <i class="fas fa-2x"
+                            ng-class="{ 'fa-times-circle' : queues.dead &gt; 20, 'fa-exclamation-circle' : queues.dead &gt; 0 &amp;&amp; queues.dead &lt;= 20, 'fa-check-circle' : queues.dead == 0 }"></i>
+                        <h5 class="mb-0">
+                            {{ queues.dead }} {{ 'ui.sync.conflict' | i18n }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="btn-group m-auto">
+                        <button ng-if="queues.dead" id="btnRetry" type="button" ng-click="retryAll()" class="btn btn-warning indicator-container"><i
+                                class="fas fa-fw fa-random fa-rotate-270"></i>{{ 'ui.sync.retry' | i18n }}</button>
+                        <button type="button" id="btnSync" ng-click="syncNow()" class="btn btn-primary"><i
+                                class="fas fa-fw fa-sync-alt"></i> {{ 'ui.sync.now' | i18n }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

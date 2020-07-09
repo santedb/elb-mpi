@@ -1,0 +1,50 @@
+<!-- 
+This file provides an example of adding an "ID Card" tab to the patient summary screen. For more information on widgets see: https://help.santesuite.org/santedb/extending-santedb/applets/assets/html-widgets
+
+-->
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:sdb="http://santedb.org/applet" class="p-2"
+    oc-lazy-load="{ name: 'ElboniaIdCardWidgetController', files: ['/elb.mpi/controllers/widgets/idCard.js'] }">
+    <sdb:widget name="org.santedb.widget.patient.card" type="Tab" context="org.santedb.patient" order="10">
+        <sdb:icon>fas fa-qrcode</sdb:icon>
+        <sdb:description lang="en">Patient Demographics Widget Tab</sdb:description>
+    </sdb:widget>
+
+    <div class="can-print">
+        <div>
+            <table class="table" ng-controller="ElboniaIdCardWidgetController">
+                <caption class="print-only">{{ 'ui.print.date' | i18n }} {{ :: $root.page.currentTime | extDate: 'M' }}</caption>
+                <tr>
+                    <td width="35%" rowspan="4" align="center" class="bg-light">
+                        <img class="m-auto" src="{{scopedObject.barcodeUrl}}" style="height:150px; width:150px" />
+                    </td>
+                    <td width="65%">
+                        <strong>{{ 'ui.model.patient.name' | i18n }}:</strong>
+                        {{ scopedObject.name | name }}
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>{{ 'ui.model.patient.dateOfBirth' | i18n }}:</strong>
+                        {{ scopedObject.dateOfBirth | extDate: scopedObject.dateOfBirthPrecision }}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{ 'ui.model.patient.genderConcept' | i18n }}:</strong>
+                        {{ scopedObject.genderConceptModel | concept }}</td>
+                </tr>
+                <tr>
+                    <td><strong>{{ 'ui.model.patient.address' | i18n }}:</strong> {{ scopedObject.address | address }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" class="bg-light">{{ scopedObject.barcodeId.value }}</td>
+                    <td><strong>{{ 'ui.model.entity.relationship.Father' | i18n }}:</strong>
+                        {{ scopedObject.relationship['Father'].targetModel.name | name }}</td>
+                </tr>
+                <tr>
+                    <td align="center" class="bg-light">{{ scopedObject.barcodeId.authority.name }} </td>
+                    <td><strong>{{ 'ui.model.patient.birthplace' | i18n }}:</strong>
+                        {{ scopedObject.relationship['Birthplace'].targetModel.name | name }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
