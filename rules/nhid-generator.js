@@ -49,6 +49,7 @@ function generateElboniaNhid() {
 
 /**
  * Business rule - when incoming patient master has been persisted not in MDM mode
+ * @param {Patient} patient The patient to append the ID to
  */
 function appendPatientID(patient) {
 
@@ -73,7 +74,7 @@ function appendPatientID(patient) {
         try {
             if (!patient.relationship)
                 patient.relationship = {};
-
+            
             // Set the dedicated registration facility
             var facility = SanteDBDcg.GetFacilities().resource[0];
             patient.relationship.ServiceDeliveryLocation = new EntityRelationship({

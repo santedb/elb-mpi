@@ -770,6 +770,7 @@ if(!Patient)
  * @property {ActParticipation} participation.Via             The player entity represents an entity where the act occurred "via" this entity (i.e. in transport)            
  * @property {ActParticipation} participation.Witness             The player entity represents a legal witness to the act occurring.            
  * @property {ActParticipation} participation.$other Unclassified
+ * @property {SecurityPolicyInstance} policy Policies applied to the patient
  * @property {object} relationship            Gets a list of all associated entities for this entity            
  * @property {EntityRelationship} relationship.Access             The access            
  * @property {EntityRelationship} relationship.ActiveMoiety             The active moiety            
@@ -963,6 +964,8 @@ if(!Patient)
 function Patient (copyData) { 
 	this.$type = 'Patient';
 	if(copyData) {
+	/** @type {SecurityPolicyInstance} */
+	this.policy = copyData.policy;
 	/** @type {string} */
 	this.id = copyData.id;
 	/** @type {string} */
