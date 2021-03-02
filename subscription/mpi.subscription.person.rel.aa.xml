@@ -4,7 +4,6 @@
 
   This subscription synchronizes all persons who are related to patients who have an identitifer in the subscribed identity domains.
   -->
-  <?xml version="1.0" encoding="utf-8"?>
 <SubscriptionDefinition xmlns="http://santedb.org/subscription"  uuid="99b65812-c14e-4bb4-b7a1-ca7bcee83dde" resource="Person">
   <server>
     <definition invariant="npgsql">
@@ -38,7 +37,7 @@
       )
       ]]>
     </definition>
-    <definition invariant="fbsql">
+    <definition invariant="FirebirdSQL">
       <![CDATA[
           SELECT * FROM 
       ENT_VRSN_TBL 

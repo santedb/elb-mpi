@@ -19,7 +19,7 @@
  - Date: 2018-7-23
  -->
 <AppletManifest xmlns="http://santedb.org/applet">
-  <info id="elb.mpi" version="2.0.26.0">
+  <info id="elb.mpi" version="1.0.0.0">
     <icon>/org.santedb.core/img/icon.png</icon>
     <name lang="en">Elbonia National MPI</name>
     <author>Elbonia Ministry of Health</author>
